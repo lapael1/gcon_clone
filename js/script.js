@@ -125,11 +125,19 @@ $(document).ready(function () {
     },
   });
   $(".sw-notice-pause").click(function () {
-    sw_notice.autoplay.stop();
+    // swiper 가 중첩되어져서 처리를 함.
+    for (var i = 0; i < sw_notice.length; i++) {
+      sw_notice[i].autoplay.stop();
+    }
+    // sw_notice.autoplay.stop();
   });
   // 자동 재생 실행
   $(".sw-notice-play").click(function () {
-    sw_notice.autoplay.start();
+    // swiper 가 중첩되어져서 처리를 함.
+    for (var i = 0; i < sw_notice.length; i++) {
+      sw_notice[i].autoplay.start();
+    }
+    // sw_notice.autoplay.start();
   });
   // 공지사항 목록 관련
   const noticeA = $(".notice-menu > li");
