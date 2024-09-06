@@ -70,19 +70,60 @@ $(document).ready(function () {
 
   // console.log( hTop_H );
   const hHeight = hTop_H + hMiddle_H;
+
+  // fix기능 관련
+  const fixA = $(".fix-a");
+  $.each(fixA, function (index, item) {
+    // console.log(index);
+    $(this).click(function (e) {
+      // e.preventDefault();
+      fixA.removeClass("fix-a-focus");
+      fixA.eq(index).addClass("fix-a-focus");
+    });
+  });
+
   $(window).scroll(function () {
     // 스크롤바의 위치값을 파악한다
-    const scY = $(window).scrollTop();
-    // console.log(scY);
-    if (scY >= hHeight) {
+    // 스크롤바의 위치값을 파악한다
+    let scy = $(window).scrollTop();
+    console.log(scy);
+
+    if (scy >= 1194) {
+      // 스크롤 위치가 1516px 이상일 때
+      fixA.removeClass("fix-a-focus");
+      fixA.eq(2).addClass("fix-a-focus");
+    } else if (scy >= 571) {
+      // 스크롤 위치가 861px 이상 1516px 미만일 때
+      fixA.removeClass("fix-a-focus");
+      fixA.eq(1).addClass("fix-a-focus");
+    } else if (scy >= 0) {
+      // 스크롤 위치가 0px 이상 861px 미만일 때
+      fixA.removeClass("fix-a-focus");
+      fixA.eq(0).addClass("fix-a-focus");
+    }
+    // 두 번째 기능: 스크롤 위치에 따라 header의 클래스 변경
+    if (scy >= hHeight) {
       $(".header").addClass("h-fix");
       $(".logo-gnb").addClass("h-show");
       $(".gnb").addClass("h-fix-gnb");
+      $(".gotop").addClass("gotop_focus");
     } else {
       $(".header").removeClass("h-fix");
       $(".logo-gnb").removeClass("h-show");
       $(".gnb").removeClass("h-fix-gnb");
+      $(".gotop").removeClass("gotop_focus");
     }
+  });
+
+  // 위로가기 기능
+  $(".gotop").click(function (e) {
+    e.preventDefault();
+    $("html").stop().animate(
+      {
+        scrollTop: 0,
+      },
+      600
+    );
   });
   // swiper
   // content 슬라이드
@@ -247,16 +288,25 @@ $(document).ready(function () {
       newsFocusNum = index;
       newsCont.eq(newsFocusNum).show();
     });
-    $(this).mouseenter(function(){
-      $(this).addClass("news-focus")
-    })
-    $(this).mouseleave(function(){
-      if(newsFocusNum == index){
-        return
+    $(this).mouseenter(function () {
+      $(this).addClass("news-focus");
+    });
+    $(this).mouseleave(function () {
+      if (newsFocusNum == index) {
+        return;
       }
-      $(this).removeClass("news-focus")
-    })
+      $(this).removeClass("news-focus");
+    });
   });
-
+  // footer펼침목록
+  const linkListBt = $(".link-list-bt");
+  const linkSiteWrap = $(".link-site-wrap");
+  linkListBt.click(function (e) {
+    e.preventDefault();
+    linkSiteWrap.toggleClass("link-site-wrap-on");
+  });
+  // $("body").click(function(){
+  //   linkSiteWrap.removeClass("link-site-wrap-on")
+  // })
   // ====================================
 });

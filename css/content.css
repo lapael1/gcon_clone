@@ -463,7 +463,21 @@ padding-bottom: 60px;
 .alram-tab-menu a:hover::before{
   opacity: 1;
 }
+/* js tab적용 */
+.alram-tab-menu-focus {
+  color: rgba(85, 85, 85, 1.0) !important;
+}
 
+.alram-tab-menu-focus:before {
+  opacity: 1 !important;
+}
+.alram-tab-cont {
+  position: relative;
+  display: none;
+
+  padding: 40px;
+  padding-right: 0;
+}
 .alram-tab-cont-focus {
   display: block !important;
 }
@@ -496,16 +510,6 @@ padding-bottom: 60px;
   padding-top: 15px;
   font-style: normal;
 
-}
-.alram-tab-cont {
-  position: relative;
-  display: none;
-
-  padding: 40px;
-  padding-right: 0;
-}
-.alram-tab-cont-focus {
-  display: block !important;
 }
 
 .alram-cont-box a {
@@ -558,6 +562,7 @@ padding-bottom: 60px;
   font-weight: 500;
 }
 
+/* 일정표영역 */
 * 일정표 */
 .calendar-wrap {
     position: relative;
